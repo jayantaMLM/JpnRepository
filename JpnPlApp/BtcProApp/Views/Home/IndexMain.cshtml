@@ -1,0 +1,589 @@
+﻿@{
+    Layout = null;
+}
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>JPN Group</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="shortcut icon" href="~/SiteAssets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="~/SiteAssets/images/favicon.ico" type="image/x-icon">
+
+    <!--global style sheet-->
+    <link href="~/SiteAssets/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="~/SiteAssets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="~/SiteAssets/css/menu.css" rel="stylesheet">
+    <link href="~/SiteAssets/css/slider.css" rel="stylesheet">
+    <link href="~/SiteAssets/css/style.css" rel="stylesheet" type="text/css">
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <link href="~/js/jquery-ui/jquery-ui-1.10.1.custom.min.css" rel="stylesheet" />
+    <script src="~/js/jquery-ui/jquery-ui-1.10.1.custom.min.js"></script>
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+    <script src="~/app/scripts/RegistrationController.js"></script>
+    <link href="~/SiteAssets/css/style.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        function showRegistrationPage() {
+            $("#mu-slider").hide();
+            $("#mu-services").hide();
+            $("#mu-about-us").hide();
+            $("#mu-portfolio").hide();
+            $("#mu-certificate").hide();
+            $("#registrationPage").show();
+            $("#loginPage").hide();
+            debugger;
+            var sel = 'div[ng-controller="Register"]';
+            var $scope = angular.element(sel).scope();
+            $scope.isComplete = false;
+            $scope.isRegistered = false;
+            $scope.registerModel.ReferrerName = "";
+            $scope.registerModel.FullName = "";
+            $scope.registerModel.EmailId = "";
+            $scope.registerModel.UserName = "";
+            $scope.registerModel.Password = "";
+            $scope.registerModel.ConfirmPassword = "";
+            $scope.$apply();
+            $("#registrationPage").show();
+        }
+        function showLoginPage() {
+            $("#mu-slider").hide();
+            $("#mu-services").hide();
+            $("#mu-about-us").hide();
+            $("#mu-portfolio").hide();
+            $("#mu-certificate").hide();
+            $("#registrationPage").hide();
+            $("#loginPage").show();
+        }
+        function otherClick() {
+            $("#mu-slider").show();
+            $("#mu-services").show();
+            $("#mu-about-us").show();
+            $("#mu-portfolio").show();
+            $("#mu-certificate").show();
+            $("#loginPage").hide();
+            $("#registrationPage").hide();
+        }
+    </script>
+
+</head>
+
+<body>
+    <div ng-app="app" ng-controller="Register">
+        <!--header part-->
+        <header id="mu-header">
+            <section class="top-part">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <a href="#" onclick="showLoginPage()" class="btn btn-warning">Login</a>
+                            @*<a href="#" onclick="showRegistrationPage()" class="btn btn-danger">Registration</a>*@
+                        </div>
+                        <div class="col-sm-8 text-right">
+                            <div class="top-cont"></div>
+                            <div class="top-cont"><a href="#">info@jpnpl.com</a></div>
+                            <div class="social">
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <nav class="navbar navbar-default mu-main-navbar" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <!-- FOR MOBILE VIEW COLLAPSED BUTTON -->
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <!-- LOGO -->
+                        <!--  Image based logo  -->
+                        <a class="navbar-brand" href="index.html"><img src="~/SiteAssets/images/logo.png" alt="Logo img"></a>
+                        <!--  Text based logo  -->
+                        <!--           <a class="navbar-brand" href="index.html"><span>SpicyX</span></a>   -->
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul id="top-menu" class="nav navbar-nav navbar-right mu-main-nav">
+                            <li><a href="#mu-slider" onclick="otherClick()">HOME</a></li>
+                            <li><a href="#mu-services" onclick="otherClick()">SERVICES</a></li>
+                            <li><a href="#mu-about-us" onclick="otherClick()">ABOUT US</a></li>
+                            <li><a href="#mu-portfolio" onclick="otherClick()">GALLERY</a></li>
+                            <li><a href="#mu-certificate" onclick="otherClick()">CERTIFICATE</a></li>
+                            <li><a href="#mu-contact" onclick="otherClick()">CONTACT</a></li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </nav>
+        </header>
+        <!--banner part-->
+        <section id="mu-slider" class="banner">
+            <div class="slider_container">
+                <div class="flexslider">
+                    <ul class="slides">
+                        <li><img src="~/SiteAssets/images/slide-1.jpg" title="" /></li>
+                        <li><img src="~/SiteAssets/images/slide-2.jpg" title="" /></li>
+                        <li><img src="~/SiteAssets/images/slide-3.jpg" title="" /></li>
+                        <li><img src="~/SiteAssets/images/slide-4.jpg" title="" /></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!--welcome part-->
+        <section class="welcome-part" id="mu-services">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h1>Our Services <p class="lead">JPN PROPERTIES LTD., JPN SECURITY LTD., JPN TRADING CORPORATION., AAPF INTERNATIONAL CARGO.</p></h1>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="welcome-service">
+                            <h2> JPN PROPERTIES LTD.</h2>
+                            <div class="tt-service-icon"><i class="fa fa-building"></i></div>
+                            <div class="tt-service-info">
+                                <span>JPN Properties Ltd started its journey on 15th January 2013 with the vision to excel in land development business and to establish as a brand name at home and abroad.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="welcome-service">
+                            <h2>JPN SECURITY LTD.</h2>
+                            <div class="tt-service-icon"><i class="fa fa-eye"></i></div>
+                            <div class="tt-service-info">
+                                <span>JPN Security is a wing of the JPN Group. In this service area main service are Personal and property protection, Private detective Service, Security equipmetn for your safety and Analysis and investigations.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="welcome-service">
+                            <h2>JPN TRADING CORPORATION</h2>
+                            <div class="tt-service-icon"><i class="fa fa-suitcase"></i></div>
+                            <div class="tt-service-info">
+                                <span>JPN Trading Corporation is a wing of the JPN Group to deal with different trades and businesses. Mainly invest on Share Market, Forex Market etc.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="welcome-service">
+                            <h2>AAPF INTERNATIONAL CARGO</h2>
+                            <div class="tt-service-icon"><i class="fa fa-ship"></i></div>
+                            <div class="tt-service-info">
+                                <span>AAPF International Cargo is a wing of the JPN Group. It is Logistics and Supply Chain company. We have a proud tradition of a very high standard of customer service.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- content part -->
+        <section id="mu-about-us" class="content-pt">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <h1>About JPN</h1>
+                        <p>JPN Properties Ltd started its journey on 15th January 2013 with the vision to excel in land development business and to establish as a brand name at home and abroad by ensuring even growth of the company and providing maximum security to the customers. Its produces products for all types of clients from low earning to high profile people with a view to increasing sales following the principle of 'Minimum investment :Maximum profit' for the clients . Being persistent to its goals and objectives, the company is now offering as many as 3 projects throughout the country.</p>
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <a class="fancybox-effects-d" href="~/SiteAssets/images/project.jpg" rel="gallery">
+                            <img src="~/SiteAssets/images/project.jpg" alt="project" class="img-responsive img-thumbnail">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--portfolio Part-->
+        <section id="mu-portfolio" class="protfolio">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h1>Our Gallery</h1>
+                    </div>
+                </div>
+                <div class="row no-padding margin-t-30">
+                    <div class="col-sm-3 no-padding">
+                        <div class="pro-item">
+                            <a class="fancybox-effects-d" href="~/SiteAssets/images/portfolio/11.jpg" rel="gallery">
+                                <img src="~/SiteAssets/images/portfolio/11.jpg" alt="" class="img-responsive">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 no-padding">
+                        <div class="pro-item">
+                            <a class="fancybox-effects-d" href="~/SiteAssets/images/portfolio/13.jpg" rel="gallery">
+                                <img src="~/SiteAssets/images/portfolio/13.jpg" alt="" class="img-responsive">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 no-padding">
+                        <div class="pro-item">
+                            <a class="fancybox-effects-d" href="~/SiteAssets/images/portfolio/14.jpg" rel="gallery">
+                                <img src="~/SiteAssets/images/portfolio/14.jpg" alt="" class="img-responsive">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 no-padding">
+                        <div class="pro-item">
+                            <a class="fancybox-effects-d" href="~/SiteAssets/images/portfolio/15.jpg" rel="gallery">
+                                <img src="~/SiteAssets/images/portfolio/15.jpg" alt="" class="img-responsive">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 no-padding">
+                        <div class="pro-item">
+                            <a class="fancybox-effects-d" href="~/SiteAssets/images/portfolio/16.jpg" rel="gallery">
+                                <img src="~/SiteAssets/images/portfolio/16.jpg" alt="" class="img-responsive">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 no-padding">
+                        <div class="pro-item">
+                            <a class="fancybox-effects-d" href="~/SiteAssets/images/portfolio/18.jpg" rel="gallery">
+                                <img src="~/SiteAssets/images/portfolio/18.jpg" alt="" class="img-responsive">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 no-padding">
+                        <div class="pro-item">
+                            <a class="fancybox-effects-d" href="~/SiteAssets/images/portfolio/19.jpg" rel="gallery">
+                                <img src="~/SiteAssets/images/portfolio/19.jpg" alt="" class="img-responsive">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 no-padding">
+                        <div class="pro-item">
+                            <a class="fancybox-effects-d" href="~/SiteAssets/images/portfolio/20.jpg" rel="gallery">
+                                <img src="~/SiteAssets/images/portfolio/20.jpg" alt="" class="img-responsive">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- certificate part -->
+        <section id="mu-certificate" class="protfolio">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <h1>OUR CERTIFICATE</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 text-center">
+                        <a class="fancybox-effects-d" href="~/SiteAssets/images/certificate.jpg" rel="gallery">
+                            <img src="~/SiteAssets/images/certificate.jpg" alt="certificate" class="img-responsive img-thumbnail margin-b-20">
+                            <h3>CERTIFICATE</h3>
+                        </a>
+                    </div>
+                   
+                    <div class="col-sm-4 text-center">
+                        <a class="fancybox-effects-d" href="~/SiteAssets/images/certificate-1.jpg" rel="gallery">
+                            <img src="~/SiteAssets/images/certificate-1.jpg" alt="certificate" class="img-responsive img-thumbnail margin-b-20">
+                            <h3>CERTIFICATE</h3>
+                        </a>
+                    </div>
+
+                    <div class="col-sm-4 text-center">
+                        <a class="fancybox-effects-d" href="~/SiteAssets/images/certificate-2.jpg" rel="gallery">
+                            <img src="~/SiteAssets/images/certificate-2.jpg" alt="certificate" class="img-responsive img-thumbnail margin-b-20">
+                            <h3>SHARE APPLICATION FORM</h3>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="loginPage" style="display:none">
+            <div class="login-body" style="background:#f5f5f5">
+                <div class="container">
+                    <form name="Login" class="form-signin" style="height:340px;margin-top:200px;margin-bottom:100px">
+
+                        <div class="login-wrap" style="width:400px;padding-bottom:0px;padding-top:0px;margin:auto !important;overflow:hidden auto">
+                            <div class="user-login-info" style="margin-bottom:0px">
+                                <div class="col-md-12">
+                                    <h3 class="form-signin-heading" style="margin-bottom:25px;margin-left:115px">Member Login</h3>
+                                </div>
+                                <div class="col-md-12">
+                                    <md-input-container style="width:100%;margin:10px">
+                                        <label>Username</label>
+                                        <input name="Username0" ng-model="loginModel.UserName" ng-blur="checkLoginUsername()" ng-pattern="/^[A-Za-z0-9]*$/" ng-minlength="6" ng-maxlength="30" ng-required="true" />
+                                        <div class="errorcls">{{loginErrModel.UserName}}</div>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-md-12">
+                                    <md-input-container style="width:100%;margin:10px">
+                                        <label>Password</label>
+                                        <input type="password" name="Password0" ng-model="loginModel.Password" ng-pattern="/^[A-Za-z0-9]*$/" ng-minlength="6" ng-maxlength="14" ng-required="true" />
+                                        <div class="errorcls">{{loginErrModel.Password}}</div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div style="text-align:center">
+                                <a href="#" id="resetlink" style="color:#3b86f5;margin-left:25px;padding:3px">Forgot Password?</a>
+                                <input type="button" value="Login" class="btn btn-info" ng-click="sendForLogin()" ng-disabled="Login.$invalid || loginErrModel.UserName!=''" style="height:35px;width:30%;margin-bottom:30px;" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="registrationPage" style="display:none">
+            <div class="login-body" style="background:#f5f5f5">
+                <div class="container">
+                    <form name="Registration" class="form-signin" style="height:625px;margin-top:95px;margin-bottom:100px">
+                        <h2 class="form-signin-heading">register now</h2>
+                        <div class="login-wrap" style="padding-bottom:0px;padding-top:0px;overflow:hidden auto">
+                            <div class="user-login-info" ng-show="!isComplete && !isRegistered" style="margin-bottom:0px">
+                                <div class="col-md-12">
+                                    <md-input-container style="width:100%;margin:10px">
+                                        <label>Sponsor name</label>
+                                        <input name="ReferrerName" ng-model="registerModel.ReferrerName" ng-change="validation1()" ng-blur="checkReferrername()" ng-required="true" />
+                                        <div class="errorcls">{{errorModel.ReferrerName}}</div>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-md-12">
+                                    <md-input-container style="width:100%;margin:10px">
+                                        <label>Member name</label>
+                                        <input name="Fullname" ng-model="registerModel.FullName" ng-required="true" ng-change="validation2()" />  @*ng-pattern="/^[a-zA-Z ]*$/"*@
+                                        <div class="errorcls">{{errorModel.FullName}}</div>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-md-12">
+                                    <md-input-container style="width:100%;margin:10px">
+                                        <label>Email Id</label>
+                                        <input type="email" name="Email" ng-model="registerModel.EmailId" ng-required="true" ng-change="validation3()" ng-blur="checkEmailId()" />
+                                        <div class="errorcls">{{errorModel.EmailId}}</div>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-md-12">
+                                    <md-input-container style="width:100%;margin:10px">
+                                        <label>Unique Username</label>
+                                        <input name="Username" ng-model="registerModel.UserName" ng-keyup="validation4()" ng-blur="checkUsername()" ng-pattern="/^[A-Za-z0-9]*$/" ng-minlength="6" ng-maxlength="30" ng-required="true" />
+                                        <div class="errorcls">{{errorModel.UserName}}</div>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-md-6">
+                                    <md-input-container style="margin:10px">
+                                        <label>Password</label>
+                                        <input type="password" name="Password" ng-model="registerModel.Password" ng-change="validation5()" ng-pattern="/^[A-Za-z0-9]*$/" ng-minlength="6" ng-maxlength="14" ng-required="true" />
+                                        <div class="errorcls">{{errorModel.Password}}</div>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-md-6">
+                                    <md-input-container style="margin:10px">
+                                        <label>ReType Password</label>
+                                        <input type="password" name="Password2" ng-model="registerModel.ConfirmPassword" ng-change="validation6()" ng-required="true" />
+                                        <div class="errorcls">{{errorModel.ConfirmPassword}}</div>
+                                    </md-input-container>
+                                </div>
+
+                                <div style="margin-left:28px;margin-right:10px">
+                                    <p style="margin-bottom:10px;font-weight:700;color:rgba(0,0,0,0.54);font-size:xx-small">Position</p>
+                                    <input type="radio" ng-model="registerModel.BinaryPosition" value="L" name="BinaryPos" checked="checked" />Left &nbsp;&nbsp;&nbsp; <input type="radio" ng-model="registerModel.BinaryPosition" value="R" name="BinaryPos" />Right
+                                    <hr style="margin-top:10px;margin-bottom:0px;border-top-color:#d4d2d2" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="text-align:center">
+                            <input type="button" value="REGISTER" class="btn btn-info" ng-disabled="Registration.$invalid || errorModel.ReferrerName!='' || errorModel.UserName!=''" ng-click="showSubmit=true;register();registration()" style="height:35px;width:30%;margin-bottom:30px;" ng-show="!isComplete && !isRegistered" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--footer part-->
+        <footer id="mu-contact">
+            <div class="container-fluid no-padding">
+                <div class="google-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1871166.296406068!2d89.70932228660982!3d23.65371622266275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1495963688451" width="100%" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <!--footer 1st item-->
+                    <div class="col-sm-7 foot-pnl">
+                        <h2>For any Query</h2>
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12">
+                                        <input type="text" class="form-control" name="" id="" placeholder="Full Name">
+                                    </div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <input type="text" class="form-control" name="" id="" placeholder="Phone No">
+                                    </div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <input type="text" class="form-control" name="" id="" placeholder="Email Id">
+                                    </div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <input type="text" class="form-control" name="" id="" placeholder="Country">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12">
+                                        <input type="text" class="form-control" name="" id="" placeholder="Subject">
+                                    </div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <textarea rows="5" cols="8" class="form-control" placeholder="Message"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12">
+                                <button class="btn btn-danger">SEND ENQUIRY</button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--end footer 1st item-->
+                    <!--follow us-->
+                    <div class="col-sm-5 foot-pnl">
+                        <h2>Contact Us</h2>
+                        <div class="margin-b-20">
+                            <p><span class="fa fa-map-marker"></span>JPN Group of Companies, House # 935 (1st Floor),         Road # 12, Avenue # 02, Mirpur DOHS, Mirpur,        Dhaka - 1216, Bangladesh</p>
+                            <p><span class="fa fa-phone"></span> +88-02-8081208</p>
+                            <p><span class="fa fa-envelope"></span> info@jpnpl.com</p>
+                            <p><span class="fa fa-globe"></span> www.jpnpl.com</p>
+                        </div>
+                        <!-- end follow us-->
+
+                    </div>
+            </div>
+        </footer>
+    </div>
+    <!--copyright part-->
+    <section class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center text">
+                    Copy Right © 2017 JPN GROUP OF COMPANIES.
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--javascript part--->
+    @*<script src="~/SiteAssets/js/jquery-1.9.1.min.js"></script>*@
+
+    <!-- FlexSlider -->
+    <script type="text/javascript" src="~/SiteAssets/js/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+	var $ = jQuery.noConflict();
+	$(window).load(function() {
+	$('.flexslider').flexslider({
+		  animation: "fade"
+	});
+	});
+    </script>
+    <!-- fancybox Assets -->
+    <link rel="stylesheet" type="text/css" href="~/SiteAssets/fancy-box/jquery.fancybox.css?v=2.1.5" media="screen" />
+    <script type="text/javascript" src="~/SiteAssets/fancy-box/jquery.fancybox.js?v=2.1.5"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('.fancybox').fancybox();
+        $(".fancybox-effects-d").fancybox({
+            padding: 0,
+            openEffect : 'elastic',
+            openSpeed  : 150,
+            closeEffect : 'elastic',
+            closeSpeed  : 150,
+            closeClick : true,
+            helpers : {
+            overlay : true
+            }
+        });
+    });
+    </script>
+    <script src="~/SiteAssets/js/script.js"></script>
+    <div id="passwordreset" style="background-color:white;text-align:center">
+        <div id="info" style="text-align:center">
+            <table style="width:70%;margin-top:40px">
+                <tr style="line-height:25px">
+                    <td style="width:50%"><label>Username</label></td>
+                    <td><input id="recoveryname" type="text" /></td>
+                </tr>
+                <tr style="line-height:25px">
+                    <td><label>Email Id</label></td>
+                    <td><input id="recoveryemail" type="email" /></td>
+                </tr>
+            </table>
+            <table style="margin-top:30px">
+                <tr>
+                    <td style="width:80px"><i class="fa fa-2x fa-info" style="color:blue"></i></td>
+                    <td style="text-align:left;padding-right:30px"><h4><span id="message">Input correct username and registered email id for self verification to receive forgotten password in your registered email id.</span></h4></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#passwordreset").dialog({
+                autoOpen: false,
+                width: 525,
+                height:425,
+                maxWidth:525,
+                maxheight:425,
+                modal:true,
+                buttons: {
+                    "Recover": function() {
+                        var usr=$("#recoveryname").val();
+                        var email=$("#recoveryemail").val();
+                        $.ajax({
+                            type: "POST",
+                            url: "/Home/CheckIdentity?username="+usr+"&emailId="+email,
+                            dataType: "json",
+                            success: function (response) {
+                                $("#message").text(response.Message);
+                            }
+                        })
+                    },
+                    "Close": function() {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+            $( "#passwordreset" ).dialog( "option", "title", "PASSWORD RECOVERY WINDOW" );
+            var saveDialog = $('#passwordreset');
+
+            $("#resetlink").click(function(){
+                $("#passwordreset").dialog("open");
+            })
+            debugger;
+            var username='@ViewBag.Username';
+            var sel = 'div[ng-controller="Register"]';
+            var $scope = angular.element(sel).scope();
+            $scope.ReferrerName=username;
+            //$scope.$apply();
+            if (username!=""){
+                $("#referrername").prop('disabled',true);
+                $("#referrerdiv").hide();
+            }else{
+                $("#referrerdiv").show();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+﻿<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<link href="~/js/jquery-ui/jquery-ui-1.10.1.custom.min.css" rel="stylesheet" />
+<script src="~/js/jquery-ui/jquery-ui-1.10.1.custom.min.js"></script>
+
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+@*<script src="~/Scripts/angular.min.js"></script>*@
+<script src="~/app/scripts/RegistrationController.js"></script>
+
+
+<style>
+    .form-signin h2.form-signin-heading {
+        background-color: #557a24;
+    }
+</style>
+
+<div ng-app="app" ng-controller="Register">
+    <div class="login-body" style="background:#f5f5f5">
+        <div class="container">
+            <form name="Registration" class="form-signin" style="height:675px;margin-top:95px;margin-bottom:100px">
+                <h2 class="form-signin-heading">register now</h2>
+                <div class="login-wrap" style="padding-bottom:0px;padding-top:0px;overflow:hidden auto">
+                    <div style="margin-top:30px" ng-show="!isComplete && !isRegistered">
+                        <div class="col-md-6" style="text-align:right;padding-right:5px"><label>My Joining Wallet Balance:</label></div>
+                        <div class="col-md-6" style="text-align:left;padding-left:5px">{{walletBalance |currency:'BDT '}}</div>
+                    </div>
+                    <div class="user-login-info" ng-show="!isComplete && !isRegistered" style="margin-bottom:0px">
+                        <div class="col-md-12">
+                            <md-input-container style="width:100%;margin:10px">
+                                <label>Sponsor name</label>
+                                <input name="ReferrerName" ng-model="registerModel.ReferrerName" ng-change="validation1()" ng-blur="checkReferrername()" ng-required="true" />
+                                <div class="errorcls">{{errorModel.ReferrerName}}</div>
+                            </md-input-container>
+                        </div>
+                        <div class="col-md-12">
+                            <md-input-container style="width:100%;margin:10px">
+                                <label>Member name</label>
+                                <input name="Fullname" ng-model="registerModel.FullName" ng-required="true" ng-change="validation2()" />  @*ng-pattern="/^[a-zA-Z ]*$/"*@
+                                <div class="errorcls">{{errorModel.FullName}}</div>
+                            </md-input-container>
+                        </div>
+                        <div class="col-md-12">
+                            <md-input-container style="width:100%;margin:10px">
+                                <label>Email Id</label>
+                                <input type="email" name="Email" ng-model="registerModel.EmailId" ng-required="true" ng-change="validation3()" ng-blur="checkEmailId()" />
+                                <div class="errorcls">{{errorModel.EmailId}}</div>
+                            </md-input-container>
+                        </div>
+                        <div class="col-md-12">
+                            <md-input-container style="width:100%;margin:10px">
+                                <label>Unique Username</label>
+                                <input name="Username" ng-model="registerModel.UserName" ng-keyup="validation4()" ng-blur="checkUsername()" ng-pattern="/^[A-Za-z0-9]*$/" ng-minlength="6" ng-maxlength="30" ng-required="true" />
+                                <div class="errorcls">{{errorModel.UserName}}</div>
+                            </md-input-container>
+                        </div>
+                        <div class="col-md-6">
+                            <md-input-container style="margin:10px">
+                                <label>Password</label>
+                                <input type="password" name="Password" ng-model="registerModel.Password" ng-change="validation5()" ng-pattern="/^[A-Za-z0-9]*$/" ng-minlength="6" ng-maxlength="14" ng-required="true" />
+                                <div class="errorcls">{{errorModel.Password}}</div>
+                            </md-input-container>
+                        </div>
+                        <div class="col-md-6">
+                            <md-input-container style="margin:10px">
+                                <label>ReType Password</label>
+                                <input type="password" name="Password2" ng-model="registerModel.ConfirmPassword" ng-change="validation6()" ng-required="true" />
+                                <div class="errorcls">{{errorModel.ConfirmPassword}}</div>
+                            </md-input-container>
+                        </div>
+
+                        <div style="margin-left:28px;margin-right:10px">
+                            <p style="margin-bottom:10px;font-weight:700;color:rgba(0,0,0,0.54);font-size:xx-small">Position</p>
+                            <input type="radio" ng-model="registerModel.BinaryPosition" value="L" name="BinaryPos" checked="checked" />Extreme Left &nbsp;&nbsp;&nbsp; <input type="radio" ng-model="registerModel.BinaryPosition" value="R" name="BinaryPos" />Extreme Right
+                            <hr style="margin-top:10px;margin-bottom:0px;border-top-color:#d4d2d2" />
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align:center">
+                    <input type="button" value="REGISTER" class="btn btn-info" ng-disabled="Registration.$invalid || walletBalance<2000 || errorModel.ReferrerName!='' || errorModel.UserName!=''" ng-click="showSubmit=true;register();registration()" style="height:35px;width:30%;margin-bottom:30px;" ng-show="!isComplete && !isRegistered" />
+                </div>
+                <div ng-show="isComplete && isRegistered" style="text-align:center;margin-top:135px">
+                    <h3 style="color:green">Joining completed!!!</h3>
+                    <h5>An email has been sent to the registered email id...</h5>
+                    <br>
+                    <a ng-click="init()" style="cursor:default">Continue another registration</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

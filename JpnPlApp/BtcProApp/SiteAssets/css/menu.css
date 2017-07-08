@@ -1,0 +1,106 @@
+/*==================
+ HEADER SECTION
+====================*/
+#mu-header {
+  left: 0;
+  right: 0;
+  top: 0;
+  position: fixed;
+  z-index: 999;
+}
+
+/*==================
+ NAVBAR SECTION
+====================*/
+.navbar{
+    margin-bottom: 0;   
+}
+.mu-main-navbar {
+background: #025a38;
+  border: none;
+  padding: 10px 0;
+  border-radius: 0;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.mu-main-navbar .mu-main-nav {
+  font-family: "Open Sans", sans-serif;
+}
+.navbar-right {
+    float: right !important;
+    margin-right:0;
+}
+.mu-main-navbar .mu-main-nav li a {
+  color: #ffe500;
+    font-size: 14px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.mu-main-navbar .mu-main-nav .dropdown-menu {
+  background-color: #333;
+  border-radius: 0;
+}
+.mu-main-navbar .mu-main-nav .dropdown-menu li a {
+  padding: 10px 20px;
+}
+.mu-main-navbar .navbar-header .navbar-brand {
+  padding: 0;
+    margin-left: 0;
+  /*margin-top: 8px;
+  height: 34px;
+  width: 145px;*/
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.mu-main-navbar .navbar-brand {
+    height: auto;
+}
+.mu-main-navbar .navbar-header .navbar-brand img {
+  width: 100%;
+  height: 100%;
+}
+.mu-main-navbar .navbar-header .navbar-brand span {
+ 	color: #fff;
+ 	display: inline-block;
+ 	font-weight: 700;
+ 	font-size: 35px;
+ 	margin-top: 5px;	
+}
+.mu-main-navbar .navbar-header .navbar-brand-small {
+  /*height: 20px;
+  margin-top: 16px;
+  width: 85px;*/
+}
+
+.mu-main-navbar .navbar-header .navbar-brand-small span {
+  margin-top: -4px;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus{
+    color: #fff;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  background-color: #ffe500;
+}
+
+.navbar-bg {
+  background-color:#013c25;
+  padding: 10px 0;
+}
+
+
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: #e7e7e7;
+    padding: 0;
+}

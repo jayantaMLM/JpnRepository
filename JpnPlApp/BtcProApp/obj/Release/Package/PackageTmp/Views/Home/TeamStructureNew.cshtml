@@ -1,0 +1,297 @@
+﻿
+@{
+    ViewBag.Title = "TeamStructureNew";
+}
+
+<script src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart','orgchart']}]}"></script>
+<script src="~/js/flot-chart/jquery.min.js"></script>
+<link href="~/js/jquery-ui/jquery-ui-1.10.1.custom.min.css" rel="stylesheet" />
+<script src="~/js/jquery-ui/jquery-ui-1.10.1.custom.min.js"></script>
+<link href="~/Scripts/getorgchart.css" rel="stylesheet" />
+<script src="~/Scripts/getorgchart.js"></script>
+
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+@*<script src="~/Scripts/angular.min.js"></script>*@
+
+@*<script src="~/Scripts/angular.min.js"></script>*@
+<script src="~/app/scripts/TeamStructureNewController.js"></script>
+<style>
+    .field {
+        margin-bottom: 15px !important;
+        margin-top: 15px;
+        color: black;
+    }
+
+    .errorcls {
+        color: red;
+        margin-top: -15px;
+        font-size: small;
+        padding-left: 0px;
+    }
+
+    .md-input-container {
+        width: 100%;
+    }
+
+    .ui-dialog .ui-dialog-titlebar-close {
+        position: absolute;
+        right: .3em;
+        top: 50%;
+        width: 21px;
+        margin: -10px 0 0 0;
+        padding: 1px;
+        height: 20px;
+    }
+    .get-oc-tb{
+        background-color:#b0c8ab;
+    }
+</style>
+
+<section class="wrapper" style="background-color:rgba(211, 211, 211, 0.5)">
+    <div ng-app="app" ng-controller="TeamTreeNew" ng-cloak>
+        <div class="row">
+            <div class="col-sm-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        <i class="fa fa-rotate-180 fa-code-fork" style="color:green"></i> My TEAM Structure
+                      
+                        @*<span class="pull-right"><a id="arrowLeft"><i class="fa fa-2x fa-arrow-circle-left"></i></a>&nbsp;&nbsp;<a id="arrowUp"><i class="fa fa-2x fa-arrow-circle-up"></i></a>&nbsp;&nbsp;<a id="arrowDown"><i class="fa fa-2x fa-arrow-circle-down"></i></a>&nbsp;&nbsp;<a id="arrowRight"><i class="fa fa-2x fa-arrow-circle-right"></i></a></span>*@
+                    </header>
+                    <div class="panel-body">
+                        <div style="float:left" ng-hide="!showTree && (!step1 || !step2)"><input type="text" class="form-control" style="width:200px" placeholder="Username" id="searchUser" /></div><div style="float:left"  ng-hide="!showTree && (!step1 || !step2)"><button id="searchBtn" style="height:32px" class="btn btn-primary"><i class="fa fa-search"></i> Search</button></div>
+
+                        <div ng-show="showTree" id="Tree" style="clear:both">
+                            <div id="people"></div>
+                            <div id="dialog" style="background-color:white">
+                                <table class="table table-bordered table-striped" style="background-color:white">
+                                    <tr>
+                                        <td style="text-align:right;width:50%"><label>Full name:</label></td>
+                                        <td><div id="fullname"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:right"><label>User Id:</label></td>
+                                        <td><div id="username"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:right"><label>Email Id:</label></td>
+                                        <td><div id="email"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:right"><label>Sponsor Id:</label></td>
+                                        <td><div id="sponsorname"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:right"><label>Total left:</label></td>
+                                        <td><div id="totalleft"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:right"><label>Total right:</label></td>
+                                        <td><div id="totalright"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:right"><label>Achievement:</label></td>
+                                        <td><div id="achievement"></div></td>
+                                    </tr>
+                                </table>
+                                <div style="text-align:center;margin-bottom:20px"><button id="newMember" class="btn btn-info">Click to view Tree</button></div>
+                            </div>
+                        </div>
+
+                        <div ng-show="!showTree && step1 && !step2" id="JoinForm" style="text-align:center">
+                            <h3>Buy Shares</h3><br />
+                            <label>Current Balance (Taka): <span style="color:green">{{walletBalance}}</span></label>
+                            <table style="width:30%;margin-left:35%" class="table table-striped">
+                                <tr>
+                                    <td style="padding-top:15px"><label>Enter No. of shares</label></td>
+                                    <td><input class="form-control" ng-model="shares" disabled ng-change="payamount=shares*2000" type="number" min="1" max="100000"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top:15px"><label>Enter Package Amount (Taka)</label></td>
+                                    <td><input type="number" class="form-control" ng-model="payamount" min="2000" max="2000000" disabled /></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><button class="btn btn-info" ng-disabled="walletBalance < payamount" ng-click="buy()">Buy</button></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><label>{{errmsg}}</label></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div id="NewUserForm" ng-show="!showTree && !step1 && step2">
+                            <form name="Registration" class="form-signin" style="height:550px;margin-top:0px;background-color:hsla(0, 0%, 83%, 0.23)">
+                                <h2 class="form-signin-heading" style="background-color:#32323a">registration now</h2>
+                                <div class="login-wrap" style="padding-bottom:0px;padding-top:0px;overflow:hidden auto">
+                                    <div class="user-login-info" ng-show="!isComplete && !isRegistered" style="margin-bottom:0px;background-color:hsla(0, 0%, 83%, 0.23)">
+
+                                        @*<div class="col-md-12">
+                                                <md-input-container style="width:100%;margin:10px">
+                                                    <label>Sponsor name</label>
+                                                    <input name="ReferrerName" ng-model="registerModel.ReferrerName" ng-change="validation1()" ng-blur="checkReferrername()" ng-required />
+                                                    <div class="errorcls">{{errorModel.ReferrerName}}</div>
+                                                </md-input-container>
+                                            </div>*@
+                                        <div class="col-md-12" style="margin-top:40px">
+                                            <md-input-container style="width:100%;margin:10px">
+                                                <label>Member name</label>
+                                                <input name="Fullname" ng-model="registerModel.FullName" ng-required ng-change="validation2()" />  @*ng-pattern="/^[a-zA-Z ]*$/"*@
+                                                <div class="errorcls">{{errorModel.FullName}}</div>
+                                            </md-input-container>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <md-input-container style="width:100%;margin:10px">
+                                                <label>Email Id</label>
+                                                <input type="email" name="Email" ng-model="registerModel.EmailId" ng-required ng-change="validation3()" ng-blur="checkEmailId()" />
+                                                <div class="errorcls">{{errorModel.EmailId}}</div>
+                                            </md-input-container>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <md-input-container style="width:100%;margin:10px">
+                                                <label>Unique Username</label>
+                                                <input name="Username" ng-model="registerModel.UserName" ng-keyup="validation4()" ng-blur="checkUsername()" ng-pattern="/^[A-Za-z0-9]*$/" ng-minlength="6" ng-maxlength="30" ng-required />
+                                                <div class="errorcls">{{errorModel.UserName}}</div>
+                                            </md-input-container>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <md-input-container style="margin:10px">
+                                                <label>Password</label>
+                                                <input type="password" name="Password" ng-model="registerModel.Password" ng-change="validation5()" ng-pattern="/^[A-Za-z0-9]*$/" ng-minlength="6" ng-maxlength="14" ng-required />
+                                                <div class="errorcls">{{errorModel.Password}}</div>
+                                            </md-input-container>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <md-input-container style="margin:10px">
+                                                <label>ReType Password</label>
+                                                <input type="password" name="Password2" ng-model="registerModel.ConfirmPassword" ng-change="validation6()" ng-required />
+                                                <div class="errorcls">{{errorModel.ConfirmPassword}}</div>
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="text-align:center">
+                                    <input type="button" value="REGISTER" class="btn btn-info" ng-click="register();showSubmit=false;" style="height:35px;width:30%;margin-bottom:30px;" ng-show="!isComplete && !isRegistered" />
+                                </div>
+
+                                <div style="text-align:center">
+                                    <div style="text-align:center;padding-bottom:25px;padding-top:120px" ng-show="isComplete && isRegistered">
+                                        <h2>Joining Successful!!!</h2>
+                                        <h4><i class="fa fa-envelop"></i>A confirmation email has been sent.</h4>
+                                        <br />
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    $(document).ready(function () {
+        var member = "";
+        function GetData(){
+            var data = $.ajax({
+                type: "GET",
+                url: "/Home/GetTeamByName?Member="+member,
+                dataType: "json",
+                success: function (data) {
+                    var d = data.Members;
+                    var orgchart = new getOrgChart(document.getElementById("people"), {
+                        theme: "deborah",
+                        color: "neutralgrey",
+                        dataSource: d,
+                        enableSearch: false,
+                        enableZoom: false,
+                        enablePrint: true,
+                        enableEdit: false,
+                        enableDetailsView: false,
+                        scale: 0.22,
+                        linkType: "M",
+                        orientation: getOrgChart.RO_TOP,
+                        expandToLevel: 5,
+                        levelSeparation: 200,
+                        //idField: "RegistrationId",
+                        //parentIdField: "UplineRegistrationId",
+                        //primaryFields: ["Username"],
+                        photoFields: ["pic"],
+                        clickNodeEvent: clickHandler,
+                    });
+                }
+            });
+        }
+
+        GetData();
+
+        $("#newMember").click(function () {
+            member = $("#username").text();
+            GetData();
+        });
+
+        $("#searchBtn").click(function () {
+            member = $("#searchUser").val();
+            GetData();
+        });
+
+        $("#dialog").dialog({
+            autoOpen: false,
+            width: '375px'
+        });
+
+        function clickHandler(sender, args) {
+            if (!args.node.data.isMember && args.node.data.pic != "") {
+                var ans = confirm("Are you sure you want to join a new member?");
+                if (ans) {
+                    //accessing $scope variables within Javascript
+                    var sel = 'div[ng-controller="TeamTreeNew"]';
+                    var $scope = angular.element(sel).scope();
+                    $scope.showTree = false;
+                    $scope.step1 = true;
+                    $scope.uplineId = args.node.parent.data.UplineRegistrationId;
+                    $scope.binarypos = args.node.data.position;
+                    $scope.$apply();
+                }
+            } else {
+                if (args.node.data.isMember && args.node.data.pic != "") {
+                    $("#fullname").text(args.node.data.fullname);
+                    $("#username").text(args.node.data.username);
+                    $("#email").text(args.node.data.package);
+                    $("#sponsorname").text(args.node.data.sponsorname);
+                    $("#totalleft").text(args.node.data.totalleft);
+                    $("#totalright").text(args.node.data.totalright);
+                    $("#businessleft").text(args.node.data.businessleft);
+                    $("#businessright").text(args.node.data.businessright);
+                    $("#achievement").text(args.node.data.achievement);
+
+                    $("#dialog").dialog("open");
+                }
+            }
+        }
+
+        function showMember() {
+            alert("Hello");
+        }
+
+        var interval;
+
+        function handler(command) {
+            var accelerator = 100;
+            interval = setInterval(function () {
+                orgchart.move(command, accelerator);
+                if (accelerator > 10) {
+                    accelerator--;
+                }
+            }, 20);
+        }
+    });
+</script>

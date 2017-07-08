@@ -1,0 +1,60 @@
+﻿<script src="~/Scripts/angular.min.js"></script>
+<script src="~/app/scripts/ProcessPayoutController.js"></script>
+
+<section class="wrapper" style="background-color:rgba(211, 211, 211, 0.5)">
+    <div ng-app="app" ng-controller="ProcessPayout" ng-cloak>
+        <div class="row">
+            <div class="col-sm-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        <i class="fa fa-sitemap" style="color:green"></i> Payout Process
+                    </header>
+                    <div class="panel-body">
+                        <table class="table table-bordered" style="width:50%;margin: auto !important">
+                            <tr>
+                                <td><label>Last Process Date and Time:</label></td>
+                                <td><b>{{preInfo.lastProcessDateTime}}</b></td>
+                            </tr>
+                            <tr>
+                                <td><label>Total number of new Members:</label></td>
+                                <td><b>{{preInfo.newJoinings}}</b></td>
+                            </tr>
+                            <tr>
+                                <td><label>Total old+current Members:</label></td>
+                                <td><b>{{preInfo.totalJoinings-2}}</b></td>
+                            </tr>
+                            <tr>
+                                <td><label>Total Royalty Club Members:</label></td>
+                                <td><b>{{preInfo.royaltyClubMembers}}</b></td>
+                            </tr>
+                            <tr>
+                                <td><label>Total Diamond Royalty Club Members:</label></td>
+                                <td><b>{{preInfo.diamondRoyaltyClubMembers}}</b></td>
+                            </tr>
+                            <tr>
+                                <td><label>Total Royalty Club Fund (BDT):</label></td>
+                                <td><b>{{preInfo.royaltyClubFund | currency:'BDT '}}</b></td>
+                            </tr>
+                            <tr>
+                                <td><label>Total Diamond Royalty Club Fund (BDT):</label></td>
+                                <td><b>{{preInfo.diamondRoyaltyClubFund | currency:'BDT '}}</b></td>
+                            </tr>
+                            <tr>
+                                <td><label>Royalty Club Share per member (BDT):</label></td>
+                                <td><b>{{preInfo.RoyaltyShare | currency:'BDT '}}</b></td>
+                            </tr>
+                            <tr>
+                                <td><label>Diamond Royalty Club Share per member (BDT):</label></td>
+                                <td><b>{{preInfo.DiamondRoyaltyShare | currency:'BDT '}}</b></td>
+                            </tr>
+                        </table>
+                        <div style="text-align:center;margin-top:20px;margin-bottom:30px">
+                            <button class="btn btn-primary" ng-hide="processing || preInfo.newJoinings==0" ng-click="Process()">Process Payout</button><span><img ng-show="processing" src="~/Content/loader.gif" /></span>
+                        </div>
+                       
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</section>
