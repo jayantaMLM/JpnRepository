@@ -1764,6 +1764,14 @@
     <Content Include="SiteAssets\images\certificate-1.jpg" />
     <Content Include="SiteAssets\images\certificate-2.jpg" />
     <Content Include="SiteAssets\images\certificate.jpg" />
+    <Content Include="SiteAssets\images\fd.jpg" />
+    <Content Include="SiteAssets\images\portfolio\IMG_3465.JPG" />
+    <Content Include="SiteAssets\images\portfolio\IMG_3466.JPG" />
+    <Content Include="SiteAssets\images\portfolio\IMG_3478.JPG" />
+    <Content Include="SiteAssets\images\portfolio\IMG_3542.JPG" />
+    <Content Include="SiteAssets\images\portfolio\IMG_3546.JPG" />
+    <Content Include="SiteAssets\images\portfolio\IMG_3553.JPG" />
+    <Content Include="SiteAssets\images\nf.jpg" />
     <Content Include="SiteAssets\images\slide-4.jpg" />
     <Content Include="SiteAssets\index.html" />
     <Content Include="slider.html" />
