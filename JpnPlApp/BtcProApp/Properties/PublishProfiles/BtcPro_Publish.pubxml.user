@@ -55,7 +55,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/17/2017 17:25:12</publishTime>
     </File>
     <File Include="app/scripts/MemberWithdrawalController.js">
-      <publishTime>07/01/2017 17:03:01</publishTime>
+      <publishTime>07/13/2017 08:37:21</publishTime>
     </File>
     <File Include="app/scripts/MyIllustrationController.js">
       <publishTime>05/20/2017 23:31:36</publishTime>
@@ -70,7 +70,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2017 14:26:30</publishTime>
     </File>
     <File Include="app/scripts/PayoutByAdmin.js">
-      <publishTime>07/02/2017 12:46:53</publishTime>
+      <publishTime>07/13/2017 08:46:44</publishTime>
     </File>
     <File Include="app/scripts/ProcessPayoutController.js">
       <publishTime>07/02/2017 18:31:19</publishTime>
@@ -97,7 +97,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/19/2017 13:04:02</publishTime>
     </File>
     <File Include="app/scripts/TicketController.js">
-      <publishTime>05/24/2017 20:13:26</publishTime>
+      <publishTime>07/12/2017 09:34:01</publishTime>
     </File>
     <File Include="app/scripts/TransfersWithdrawalController.js">
       <publishTime>07/02/2017 10:34:36</publishTime>
@@ -130,7 +130,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/23/2017 14:56:48</publishTime>
     </File>
     <File Include="bin/BtcProApp.dll">
-      <publishTime>07/07/2017 13:43:17</publishTime>
+      <publishTime>07/13/2017 08:47:50</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>04/23/2017 14:56:34</publishTime>
@@ -4326,6 +4326,30 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="SiteAssets/images/certificate.jpg">
       <publishTime>07/07/2017 13:05:44</publishTime>
     </File>
+    <File Include="SiteAssets/images/fd.jpg">
+      <publishTime>07/12/2017 07:38:23</publishTime>
+    </File>
+    <File Include="SiteAssets/images/nf.jpg">
+      <publishTime>07/12/2017 07:38:45</publishTime>
+    </File>
+    <File Include="SiteAssets/images/portfolio/IMG_3465.JPG">
+      <publishTime>07/12/2017 07:36:03</publishTime>
+    </File>
+    <File Include="SiteAssets/images/portfolio/IMG_3466.JPG">
+      <publishTime>07/12/2017 07:36:32</publishTime>
+    </File>
+    <File Include="SiteAssets/images/portfolio/IMG_3478.JPG">
+      <publishTime>07/12/2017 07:40:10</publishTime>
+    </File>
+    <File Include="SiteAssets/images/portfolio/IMG_3542.JPG">
+      <publishTime>07/12/2017 07:40:32</publishTime>
+    </File>
+    <File Include="SiteAssets/images/portfolio/IMG_3546.JPG">
+      <publishTime>07/12/2017 07:41:51</publishTime>
+    </File>
+    <File Include="SiteAssets/images/portfolio/IMG_3553.JPG">
+      <publishTime>07/12/2017 07:41:51</publishTime>
+    </File>
     <File Include="SiteAssets/images/slide-4.jpg">
       <publishTime>06/04/2017 00:01:23</publishTime>
     </File>
@@ -4621,7 +4645,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/17/2017 13:14:40</publishTime>
     </File>
     <File Include="Views/Home/IndexMain.cshtml">
-      <publishTime>07/07/2017 13:35:50</publishTime>
+      <publishTime>07/12/2017 08:23:36</publishTime>
     </File>
     <File Include="Views/Home/Invoices.cshtml">
       <publishTime>04/25/2017 22:22:10</publishTime>
@@ -4671,8 +4695,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Home/PackagesShop.cshtml">
       <publishTime>06/06/2017 22:12:12</publishTime>
     </File>
+    <File Include="Views/Home/PaymentAccount.cshtml">
+      <publishTime>07/12/2017 09:22:42</publishTime>
+    </File>
     <File Include="Views/Home/PayoutByAdmin.cshtml">
-      <publishTime>07/03/2017 14:06:18</publishTime>
+      <publishTime>07/13/2017 08:46:30</publishTime>
     </File>
     <File Include="Views/Home/ProcessPayout.cshtml">
       <publishTime>07/02/2017 18:25:18</publishTime>
@@ -4717,7 +4744,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/18/2017 09:35:00</publishTime>
     </File>
     <File Include="Views/Home/WithdrawalRequests.cshtml">
-      <publishTime>07/01/2017 17:09:02</publishTime>
+      <publishTime>07/13/2017 08:33:05</publishTime>
     </File>
     <File Include="Views/Home/Withdrawals.cshtml">
       <publishTime>04/25/2017 22:24:18</publishTime>
@@ -4747,7 +4774,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/23/2017 14:56:34</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>07/02/2017 17:25:24</publishTime>
+      <publishTime>07/12/2017 08:57:37</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>04/23/2017 14:56:34</publishTime>
@@ -4759,7 +4786,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/23/2017 18:37:41</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/02/2017 16:52:50</publishTime>
+      <publishTime>07/13/2017 08:47:51</publishTime>
     </File>
     <File Include="widget.html">
       <publishTime>04/23/2017 15:08:41</publishTime>

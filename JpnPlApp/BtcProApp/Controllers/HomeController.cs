@@ -209,6 +209,11 @@ namespace BtcProApp.Controllers
             return View();
         }
 
+        public ActionResult PaymentAccount()
+        {
+            return View();
+        }
+
         public ActionResult Tickets()
         {
             return View();
@@ -238,22 +243,38 @@ namespace BtcProApp.Controllers
 
         public JsonResult IsMemberACNOpresent()
         {
-            bool isExist = true;
+            bool isExist1 = true;
+            bool isExist2 = true;
+            string bikasAcno = "";
+            string banknAcno = "";
             string UserName = User.Identity.Name;
             Register mem = db.Registrations.SingleOrDefault(m => m.UserName.ToUpper().Trim() == UserName.ToUpper().Trim());
             if (mem.MyWalletAccount == "" || mem.MyWalletAccount == null)
             {
-                isExist = false;
+                isExist1 = false;
+                bikasAcno = "";
             }
             else
             {
-                isExist = true;
+                isExist1 = true;
+                bikasAcno = "Bikas Ac/No. " + mem.MyWalletAccount;
             }
-            return Json(new { Found = isExist }, JsonRequestBehavior.AllowGet);
+            if (mem.MyBankName == "" || mem.MyBankName == null || mem.MyBankName.ToUpper() == "NULL" || mem.MyBankAccountNum=="" || mem.MyBankAccountNum==null || mem.MyBankAccountNum.ToUpper() == "NULL")
+            {
+                isExist2 = false;
+                banknAcno = "";
+            }
+            else
+            {
+                isExist2 = true;
+                banknAcno = mem.MyBankName + " A/c No. " + mem.MyBankAccountNum;
+            }
+
+            return Json(new { Found1 = isExist1, Found2 = isExist2, BikasAcNo=bikasAcno, BankAcNo=banknAcno }, JsonRequestBehavior.AllowGet);
         }
 
         //called when a member puts request for withdrawal
-        public JsonResult WithdrawPostingMember(int WalletType, double Amount)
+        public JsonResult WithdrawPostingMember(int WalletType, double Amount, string PayAccount)
         {
             Guid g = Guid.NewGuid();
             string GuidString = Convert.ToBase64String(g.ToByteArray());
@@ -275,7 +296,7 @@ namespace BtcProApp.Controllers
                     req.PaidOutAmount = Amount - req.ServiceCharge;
                     req.Status = "Under Process";
                     req.BatchNo = GuidString;
-                    req.PaidBitCoinAccount = rec0.MyWalletAccount;
+                    req.PaidBitCoinAccount = PayAccount;
                     db.WithdrawalRequests.Add(req);
                     db.SaveChanges();
 
@@ -399,6 +420,7 @@ namespace BtcProApp.Controllers
                                      WalletName = w.WalletName,
                                      Amount = t.Amount,
                                      Payable = t.PaidOutAmount,
+                                     BitCoinAccount=t.PaidBitCoinAccount,
                                      AdministrativeChg = t.ServiceCharge,
                                      Approved_Date = t.Approved_Date,
                                      Status = t.Status,
@@ -1346,6 +1368,7 @@ namespace BtcProApp.Controllers
         public JsonResult IsUserMember()
         {
             bool isExist = true;
+            bool trnPwdExists = false;
             string UserName = User.Identity.Name;
             long Id = 0;
             Member mem = db.Members.SingleOrDefault(m => m.Username.ToUpper().Trim() == UserName.ToUpper().Trim());
@@ -1356,10 +1379,47 @@ namespace BtcProApp.Controllers
             else
             {
                 isExist = true;
+                string trnpwd = db.Registrations.Where(r => r.UserName == UserName).Select(r => r.TrxPassword).FirstOrDefault();
+                trnPwdExists = (trnpwd == null ? false : true);
             }
-            return Json(new { Found = isExist }, JsonRequestBehavior.AllowGet);
+            return Json(new { Found = isExist, TrnPasswordExists = trnPwdExists }, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult UpdateTransactionPassword(string TxPassword)
+        {
+            string user = User.Identity.Name;
+            var rec = db.Registrations.SingleOrDefault(r => r.UserName == user);
+            rec.TrxPassword = TxPassword;
+            db.SaveChanges();
+            return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult MatchTrnPassword(string TxPassword)
+        {
+            Boolean isMatched = false;
+            string user = User.Identity.Name;
+            var rec = db.Registrations.SingleOrDefault(r => r.UserName == user);
+            isMatched = (rec.TrxPassword == TxPassword ? true : false);
+            return Json(new { Success = isMatched }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetMyAccountNo()
+        {
+            string user = User.Identity.Name;
+            var reg = db.Registrations.SingleOrDefault(r => r.UserName.ToUpper() == user.ToUpper());
+            return Json(new { WalletAc = reg.MyWalletAccount, Bank=reg.MyBankName, BankAc=reg.MyBankAccountNum }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult MyAccountNo(string WalletId, string Bank, string BankAc)
+        {
+            string user = User.Identity.Name;
+            var reg = db.Registrations.SingleOrDefault(r => r.UserName.ToUpper() == user.ToUpper());
+            reg.MyWalletAccount = WalletId;
+            reg.MyBankName = Bank;
+            reg.MyBankAccountNum = BankAc;
+            db.SaveChanges();
+            return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+        }
         public JsonResult IsUserNameExist1(string UserName)
         {
             bool isExist = true;

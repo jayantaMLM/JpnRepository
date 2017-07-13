@@ -23,11 +23,22 @@
                                     </td>
                                     <td />
                                 </tr>
+                                <tr style="line-height:30px">
+                                    <td style="text-align:right;padding-right:15px"><label>Pay to Account :</label></td>
+                                    <td>
+                                        <select name="wallet" ng-model="account" required class="form-control">
+                                            <option value="BIKAS" ng-if="isExists1">Bikas Wallet</option>
+                                            <option value="BANK" ng-if="isExists2">Bank Account</option>
+                                        </select>
+                                    </td>
+                                    <td />
+                                </tr>
                                 <tr style="line-height:30px" ng-show="wallet=='6'">
                                     <td style="padding-top:18px;text-align:right;padding-right:15px"><label>Withdrawal Wallet Balance (BDT) :</label></td>
                                     <td style="color:green"><h3>{{wallet1Balance | currency:'BDT '}}</h3></td>
                                     <td />
                                 </tr>
+
                                 <tr style="line-height:30px">
                                     <td style="padding-top:8px;text-align:right;padding-right:15px"><label>Amount to Withdraw (BDT):</label></td>
                                     <td><input type="number" ng-model="amount" class="form-control" ng-min="1" /></td>
@@ -37,7 +48,7 @@
                                     <td></td>
                                     <td>
                                         <br />
-                                        <span><button class="btn btn-success" ng-hide="amount==null || amount<300 || amountisValid()" ng-click="Transaction()" style="margin:0 auto;">Request Withdrawal</button></span>
+                                        <span><button class="btn btn-success" ng-hide="account==' ' || amount==null || amount<300 || amountisValid()" ng-click="Transaction()" style="margin:0 auto;">Request Withdrawal</button></span>
                                     </td>
                                 </tr>
                             </table>
@@ -53,6 +64,7 @@
                                     <th>Request Date</th>
                                     <th>Wallet Type</th>
                                     <th>Requested Amount</th>
+                                    <th>Payable Account</th>
                                     <th>Payable Amount</th>
                                     <th>Administration Charge</th>
                                     <th>Approved Date</th>
@@ -67,6 +79,7 @@
                                     <td>{{trf.WalletName}}</td>
                                     <td>{{trf.Amount | currency:'BDT '}}</td>
                                     <td>{{trf.Payable | currency:'BDT '}}</td>
+                                    <td>{{trf.BitCoinAccount}}</td>
                                     <td>{{trf.AdministrativeChg | currency:'BDT '}}</td>
                                     <td>{{trf.sApproved_Date}}</td>
                                     <td><span ng-hide="trf.Status=='Approved' || trf.Status=='Cancelled by Member' || trf.Status=='Cancelled by Admin'|| trf.Status=='Paid'"><button class="btn btn-danger" ng-click="cancelOrder(trf.Id)">Cancel Request</button></span></td>

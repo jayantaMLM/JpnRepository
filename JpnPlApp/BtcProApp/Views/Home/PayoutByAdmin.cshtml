@@ -86,6 +86,7 @@
                                             <th style="text-align:center">Requested Amount</th>
                                             <th style="text-align:center">Payout Amount</th>
                                             <th style="text-align:center">Admin Charge Retained</th>
+                                            <th style="text-align:center">Pay Account</th>
                                             <th style="text-align:center">Pay?</th>
                                             <th style="text-align:center">Approve</th>
                                             <th style="text-align:center">Cancel</th>
@@ -99,6 +100,7 @@
                                             <td>{{ldgr.Amount | currency:'BDT '}}</td>
                                             <td>{{ldgr.PaidOutAmount | currency:'BDT '}}</td>
                                             <td>{{ldgr.ServiceCharge | currency:'BDT '}}</td>
+                                            <td>{{ldgr.BitcoinAcNo}}</td>
                                             <td><input type="checkbox" ng-model="ldgr.isApproved" /></td>
                                             <td><button class="btn btn-success" ng-disabled="!ldgr.isApproved" ng-click="modalPay(ldgr.RegistrationId,ldgr.Id,ldgr.PaidOutAmount)">Pay</button></td>
                                             <td><button class="btn btn-danger" ng-click="modalCancel(ldgr.RegistrationId,ldgr.Id,ldgr.PaidOutAmount)">Cancel</button></td>
@@ -130,6 +132,7 @@
                                             <th style="text-align:center">Wallet Type</th>
                                             <th style="text-align:center">Requested Amount</th>
                                             <th style="text-align:center">Payout Amount</th>
+                                            <th style="text-align:center">Pay Account</th>
                                             <th style="text-align:center">Admin Charge Retained</th>
                                             <th style="text-align:center">Approval Date</th>
                                             <th style="text-align:center">Approve Time</th>
@@ -146,6 +149,7 @@
                                             <td>{{ldgr_h.Walletname}}</td>
                                             <td>{{ldgr_h.Amount | currency:'BDT '}}</td>
                                             <td>{{ldgr_h.PaidOutAmount | currency:'BDT '}}</td>
+                                            <td>{{ldgr_h.BitcoinAcNo}}</td>
                                             <td>{{ldgr_h.ServiceCharge | currency:'BDT '}}</td>
                                             <td>{{ldgr_h.sApproved_Date}}</td>
                                             <td>{{ldgr_h.Approved_Date | date:'hh:mm a'}}</td>

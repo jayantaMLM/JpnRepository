@@ -201,3 +201,62 @@ module.controller('Ticket', function ($scope, $http, $location,$sce) {
         })
     }
 })
+
+module.controller('AccountStatus', function ($scope, $http, $location, $sce) {
+    //transaction password related code--------------------------------------------------------------------------------------
+
+
+    $scope.trnpasswordIsOk = false;
+    $scope.trnpasswordexists = false;
+
+    $http.get("/Home/IsUserMember").then(function (response) {
+        $scope.isExists = response.data.Found;
+        $scope.trnpasswordexists = response.data.TrnPasswordExists;
+    })
+
+    $scope.updateTrnPwd = function () {
+        if ($scope.trxpassword == null || $scope.trxpassword == '') {
+            alert("Transaction password cannot be blank");
+        } else {
+            $http.post("/Home/UpdateTransactionPassword?TxPassword=" + $scope.trxpassword).then(function (response) {
+                if (response.data.Success) {
+                    $scope.trnpasswordexists = true;
+                } else {
+                    alert("Update failed!!! Reset again");
+                }
+
+            })
+        }
+    }
+
+    $scope.IsTrnPasswordOK = function () {
+        $http.get("/Home/MatchTrnPassword?TxPassword=" + $scope.trnpassword).then(function (response) {
+            if (response.data.Success) {
+                $scope.trnpasswordIsOk = true;
+            } else {
+                $scope.trnpasswordIsOk = false;
+            }
+        })
+    }
+
+    //-------------------------------------------------------------------------transaction password related code end
+
+    $scope.BitCoinAcNo = "";
+    $scope.BankName = "";
+    $scope.BankAccount = "";
+
+    $http.get("/Home/GetMyAccountNo").then(function (response) {
+        $scope.BitCoinAcNo = response.data.WalletAc;
+        $scope.BankName = response.data.Bank;
+        $scope.BankAccount = response.data.BankAc;
+        $scope.trnpassword = "";
+    })
+
+    $scope.UpdateAcno = function () {
+        $http.get("/Home/MyAccountNo?WalletId=" + $scope.BitCoinAcNo + "&Bank=" + $scope.BankName + "&BankAc=" + $scope.BankAccount).then(function (data) {
+            if (data.data.Success) {
+                alert("Updated successfully");
+            }
+        })
+    }
+})

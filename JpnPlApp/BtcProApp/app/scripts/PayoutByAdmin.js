@@ -61,7 +61,6 @@ module.controller('Payout', function ($scope, $http, $window, $uibModal) {
 
     $scope.getdata = function () {
         $http.get("/api/WithdrawalRequests").then(function (response) {
-            debugger;
             $scope.requests = response.data;
             $scope.calculateTotals_W($scope.requests);
         })

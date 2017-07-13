@@ -76,12 +76,22 @@ module.controller('MemberWithdraw', function ($scope, $http, $location) {
     $scope.totalrequested = 0;
     $scope.totalpayable = 0;
     $scope.adminchange = 0;
+    $scope.account = " ";
+    $scope.isExists1 = true;
+    $scope.isExists2 = true;
+    $scope.BikasAcNo = "";
+    $scope.BankAcNo = "";
+    $scope.selectedAccount = "";
 
     $http.get("/Home/IsUserMember").then(function (response) {
         $scope.isExists = response.data.Found;
     })
     $http.get("/Home/IsMemberACNOpresent").then(function (response) {
-        $scope.isExistsAcNo = response.data.Found;
+        debugger;
+        $scope.isExists1 = response.data.Found1;
+        $scope.isExists2 = response.data.Found2;
+        $scope.BikasAcNo = response.data.BikasAcNo;
+        $scope.BankAcNo = response.data.BankAcNo;
     })
 
     $scope.getbalance = function () {
@@ -102,9 +112,16 @@ module.controller('MemberWithdraw', function ($scope, $http, $location) {
     }
 
     $scope.Transaction = function () {
+        if ($scope.account == "BIKAS") {
+            $scope.selectedAccount = $scope.BikasAcNo;
+        }
+        if ($scope.account == "BANK") {
+            $scope.selectedAccount = $scope.BankAcNo;
+        }
+        debugger;
         var ans = confirm("Are you sure?");
         if (ans) {
-            $http.post("/Home/WithdrawPostingMember?WalletType=" + $scope.wallet + "&Amount=" + $scope.amount).then(function (response) {
+            $http.post("/Home/WithdrawPostingMember?WalletType=" + $scope.wallet + "&Amount=" + $scope.amount + "&PayAccount=" + $scope.selectedAccount ).then(function (response) {
                 debugger;
                 if (response.data.Success) {
                     $scope.getbalance();

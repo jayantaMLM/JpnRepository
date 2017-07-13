@@ -123,6 +123,8 @@ namespace BtcProApp.Models
         public Boolean Joined { get; set; }
         public string CountryCode { get; set; }
         public string MyWalletAccount { get; set; }
+        public string MyBankName { get; set; }
+        public string MyBankAccountNum { get; set; }
         public string WorkingLeg { get; set; }
 
         [NotMapped]
